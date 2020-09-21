@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "/home/viethoang/DevC_Project/env/bin/python3.6",
+    "python.formatting.provider": "autopep8"
+}
