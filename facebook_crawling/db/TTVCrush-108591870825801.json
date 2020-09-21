@@ -1,0 +1,21 @@
+[
+    {
+        "url": "https://www.facebook.com/108591870825801/photos/a.108591900825798/108592134159108/",
+        "id": "108592134159108",
+        "utime": "1587356388",
+        "text": "",
+        "total_shares": "",
+        "total_cmts": "1 bình luận",
+        "crawled_cmts": [
+            {
+                "id": "161157642235890",
+                "utime": "1596100937",
+                "user_url": "https://www.facebook.com/108591870825801/photos/a.108591900825798/108592134159108/",
+                "user_id": "108591870825801photosa.108591900825798108592134159108",
+                "user_name": "Việt Hoàng",
+                "text": "ngáo"
+            }
+        ],
+        "reactions": []
+    }
+]
