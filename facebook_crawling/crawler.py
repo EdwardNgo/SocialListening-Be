@@ -129,7 +129,7 @@ class Crawler:
             except:
                 post_id = re.findall("\d+", post_url)[-1]
 
-            # print("post id: {}".format(post_id))
+            print("post id: {}".format(post_id))
             num_of_cmts = len(listHtmlCmts)
 
             total += num_of_cmts
@@ -153,10 +153,10 @@ class Crawler:
                     "created_at": utime,
                     "page_id": "2111",
                 }
+                print(post_dict)
             except:
                 print("Skip to next post")
                 continue
-            print(post_dict)
             # Insert new post to db
             graphQl_save(Crawler.client, InsertPost, post_dict)
 
@@ -253,22 +253,22 @@ class Crawler:
             react_text = react.get_attribute("aria-label")
             listJsonReacts.append(react_text)
 
-        likes = listJsonReacts[0].split(
-        )[0] if listJsonReacts != [] else "0"
-        try:
-            post_dict = {
-                "post_id": post_id,
-                "content": post_text,
-                "like": likes,
-                "comment": int(total_cmts.split()[0]) if total_cmts != "" else 0,
-                "share": int(total_shares.split()[0]) if total_shares != "" else 0,
-                "created_at": utime,
-                "page_id": "102573281588756",
-            }
-        except:
-            print("Skip to next post")
-
+        likes = listJsonReacts[0].split()[0] if listJsonReacts != [] else "0"
+        print(total_cmts)
+        # try:
+        post_dict = {
+            "post_id": post_id,
+            "content": post_text,
+            "like": likes,
+            "comment": int(total_cmts.split()[0]) if "K" not in total_cmts else int(float(total_cmts.split('K')[0]))*1000,
+            "share": int(total_shares.split()[0]) if total_shares != "" else 0,
+            "created_at": utime,
+            "page_id": "102573281588756",
+        }
         print(post_dict)
+        # except:
+        #     print("Skip to next post")
+
         # Insert new post to db
         graphQl_save(Crawler.client, InsertPost, post_dict)
         print(num_of_cmts)
@@ -381,25 +381,10 @@ class Crawler:
             "www.facebook.com")[-1].replace("/", "") + ".json"
         stop_and_save("db/"+filename, listJsonPosts)
 
-    def extract_related_fanpage(self):
-        loader.start(
-            PAGE_URL,
-            0,
-            0,
-            0,
-            0,
-            COMMENTABLE_SELECTOR_PAGE
-        )
-        driver = loader.driver
-        total = 0
-        listRelatedPage = []
-        driver.find_element_by_css_selector()
-        pass
-
 
 if __name__ == "__main__":
 
-    POST_URL = "https://www.facebook.com/VsmartVietnam/photos/a.559825587764192/974763959603684/?type=3&theater"
+    POST_URL = "https://www.facebook.com/bancotaima/posts/3791780320873041"
     GROUP_URL = "https://www.facebook.com/groups/machinelearningcoban/"
     FANPAGE_URL = "https://www.facebook.com/pg/TTVCrush-108591870825801/posts/"
     SCROLL_DOWN = 2
