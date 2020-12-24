@@ -18,5 +18,9 @@
     - VIEW_MORE_CMTS: number of times for loading more comments
     - VIEW_MORE_REPLIES: number of times for loading more replies
 3. Start crawling: `python crawler.py`
+## New feature:
+- get info of private group posts
 
-**Reference:** https://github.com/mherrmann/selenium-python-helium
+**Reference:** 
+https://github.com/mherrmann/selenium-python-helium
+https://github.com/18520339/facebook-crawling
